@@ -1,12 +1,34 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as Font from 'expo-font'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Teste do app</Text>
-    </View>
-  );
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      fontLoaded: false
+    }
+  }
+
+  componentDidMount = async () => {
+    await Font.loadAsync({
+      'Roboto_medium': require('./assets/fonts/Roboto-Medium.ttf')
+    })
+    this.setState({ 
+      fontLoaded: true 
+    })
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>        
+        
+        { this.state.fontLoaded ? <Text>Inicio do teste</Text> : <Text> Teste2</Text> }
+
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
