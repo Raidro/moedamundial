@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font'
+import Navigator from './navigation/navigator.js'
 
 export default class App extends React.Component {
 
@@ -24,7 +25,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>        
         
-        { this.state.fontLoaded ? <Text>Inicio do teste</Text> : <Text> Teste2</Text> }
+        { this.state.fontLoaded ? <Navigator /> : <Text> Teste2</Text> }
 
       </View>
     );
