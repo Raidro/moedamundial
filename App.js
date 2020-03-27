@@ -25,7 +25,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>        
         
-        { this.state.fontLoaded ? <Navigator /> : <Text> Teste2</Text> }
+        { this.state.fontLoaded ? <Navigator /> : <Text> Erro ao carregar a fonte Roboto</Text> }
 
       </View>
     );
