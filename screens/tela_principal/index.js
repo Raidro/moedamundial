@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from '../../api/api.js';
 
 //importes dos componentes do  Native Base
 import {
@@ -20,7 +21,8 @@ export default class tela_principal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "SELECIONE UMA MOEDA"
+            selected: "USD-BRL"
+
         };
     }
     onValueChange(value) {
@@ -29,7 +31,16 @@ export default class tela_principal extends Component {
         });
     }
 
+    buscaMoeda = async (valor) => {
+        await api.get(`/${valor}`)
+            .then(res => {
+                console.log(res.data)
+            })
+    };
+
+
     render() {
+
         return (
             <Container style={styles.container}>
 
@@ -45,11 +56,13 @@ export default class tela_principal extends Component {
                     <Picker
                         mode="dropdown"
                         style={styles.pickers}
-                        selectedValue={this.state.selected}
+                        //selectedValue={this.state.selected}
+                        selectedValue={this.buscaMoeda(this.state.selected)}
                         onValueChange={this.onValueChange.bind(this)}
+
                     >
                         <Picker.Item label="SELECIONE UMA MOEDA" value="SELECIONE UMA MOEDA" />
-                        <Picker.Item label="USD - DOLAR COMERCIAL" value="USD - DOLAR COMERCIAL" />
+                        <Picker.Item label="USD - DOLAR COMERCIAL" value="USD-BRL" />
                         <Picker.Item label="USDT - DOLAR TURISMO" value="USDT - DOLAR TURISMO" />
                         <Picker.Item label="CAD - DOLAR CANADENSE" value="CAD - DOLAR CANADENSE" />
                         <Picker.Item label="AUD - DOLAR AUTRALIANO" value="AUD - DOLAR AUTRALIANO" />
