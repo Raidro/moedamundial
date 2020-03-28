@@ -13,8 +13,7 @@ import {
 } from "native-base";
 import { StyleSheet } from 'react-native';
 
-//importes de style
-// import { Container } from './styles';
+
 
 export default class tela_principal extends Component {
 
@@ -60,7 +59,7 @@ export default class tela_principal extends Component {
                         <Picker.Item label="CHF - FRENCO SUIÇO" value="CHF - FRENCO SUIÇO" />
                         <Picker.Item label="CNY - YUAN CHINES" value="CNY - YUAN CHINES" />
                         <Picker.Item label="YLS - NOVO SHEKEL ISRAELENSE" value="YLS - NOVO SHEKEL ISRAELENSE" />
-                        <Picker.Item label="BCT - BITCOIN" value="BCT - BITCOIN" />
+                        <Picker.Item label="BTC - BITCOIN" value="BTC - BITCOIN" />
                         <Picker.Item label="LCT - LITECOIN" value="LCT - LITECOIN" />
                         <Picker.Item label="ETH - ETHEREUM" value="ETH - ETHEREUM" />
                         <Picker.Item label="XRP - RIPPLE" value="XRP - RIPPLE" />
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginTop: 50,
+        marginTop: 40,
         fontSize: 30,
         color: 'black',
 
