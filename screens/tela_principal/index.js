@@ -21,21 +21,46 @@ export default class tela_principal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "USD-BRL"
+            selected: "USD-BRL",
+            nome: "",
+            compra: "",
+            venda: "",
+            variacao: "",
+            variacao_porcentagem: "",
+            maximo: "",
+            minimo: "",
+
 
         };
     }
     onValueChange(value) {
         this.setState({
-            selected: value
+            selected: value,
+            nome: this.state.nome,
+            compra: this.state.compra,
+            venda: this.state.venda,
+            variacao: this.state.variacao,
+            variacao_porcentagem: this.state.variacao_porcentagem,
+            maximo: this.state.maximo,
+            minimo: this.state.minimo,
+
         });
     }
 
     buscaMoeda = async (valor) => {
         await api.get(`/${valor}`)
-            .then(res => {
-                console.log(res.data)
+            .then(res => {                               
+                this.state.nome = res.data["0"]["name"]
+                this.state.compra = res.data["0"]["bid"]
+                this.state.venda = res.data["0"]["ask"]
+                this.state.variacao =res.data["0"]["varBid"]
+                this.state.variacao_porcentagem =res.data["0"]["pctChange"]
+                this.state.maximo =res.data["0"]["high"]
+                this.state.minimo =res.data["0"]["low"]
+                
+
             })
+
     };
 
 
@@ -63,46 +88,48 @@ export default class tela_principal extends Component {
                     >
                         <Picker.Item label="SELECIONE UMA MOEDA" value="SELECIONE UMA MOEDA" />
                         <Picker.Item label="USD - DOLAR COMERCIAL" value="USD-BRL" />
-                        <Picker.Item label="USDT - DOLAR TURISMO" value="USDT - DOLAR TURISMO" />
-                        <Picker.Item label="CAD - DOLAR CANADENSE" value="CAD - DOLAR CANADENSE" />
-                        <Picker.Item label="AUD - DOLAR AUTRALIANO" value="AUD - DOLAR AUTRALIANO" />
-                        <Picker.Item label="GBP - LIBRA ESTERLINA" value="GBP - LIBRA ESTERLINA" />
-                        <Picker.Item label="ARS - PESO ARGENTINO" value="ARS - PESO ARGENTINO" />
-                        <Picker.Item label="JPY - IENE JAPONES" value="JPY - IENE JAPONES" />
-                        <Picker.Item label="CHF - FRENCO SUIÇO" value="CHF - FRENCO SUIÇO" />
-                        <Picker.Item label="CNY - YUAN CHINES" value="CNY - YUAN CHINES" />
-                        <Picker.Item label="YLS - NOVO SHEKEL ISRAELENSE" value="YLS - NOVO SHEKEL ISRAELENSE" />
-                        <Picker.Item label="BTC - BITCOIN" value="BTC - BITCOIN" />
-                        <Picker.Item label="LCT - LITECOIN" value="LCT - LITECOIN" />
-                        <Picker.Item label="ETH - ETHEREUM" value="ETH - ETHEREUM" />
-                        <Picker.Item label="XRP - RIPPLE" value="XRP - RIPPLE" />
+                        <Picker.Item label="USDT - DOLAR TURISMO" value="USDT-BRL" />
+                        <Picker.Item label="CAD - DOLAR CANADENSE" value="CAD-BRL" />
+                        <Picker.Item label="AUD - DOLAR AUTRALIANO" value="AUD-BRL" />
+                        <Picker.Item label="GBP - LIBRA ESTERLINA" value="GBP-BRL" />
+                        <Picker.Item label="ARS - PESO ARGENTINO" value="ARS-BRL" />
+                        <Picker.Item label="JPY - IENE JAPONES" value="JPY-BRL" />
+                        <Picker.Item label="CHF - FRENCO SUIÇO" value="CHF-BRL" />
+                        <Picker.Item label="CNY - YUAN CHINES" value="CNY-BRL" />
+                        <Picker.Item label="YLS - NOVO SHEKEL ISRAELENSE" value="YLS-BRL" />
+                        <Picker.Item label="BTC - BITCOIN" value="BTC-BRL" />
+                        <Picker.Item label="LTC - LITECOIN" value="LTC-BRL" />
+                        <Picker.Item label="ETH - ETHEREUM" value="ETH-BRL" />
+                        <Picker.Item label="XRP - RIPPLE" value="XRP-BRL" />
                     </Picker>
 
                     <Separator bordered>
-                        <Text>Moeda: {this.state.selected}</Text>
+                        {/*   <Text>Moeda: {this.state.selected}</Text>*/}
+                        <Text>Moeda: {this.state.nome}</Text>
+
                     </Separator>
                     <ListItem>
-                        <Text>Compra: </Text>
+                        <Text>Compra:{this.state.compra} </Text>
                     </ListItem>
 
                     <ListItem>
-                        <Text>Venda: </Text>
+                        <Text>Venda:{this.state.venda} </Text>
                     </ListItem>
 
                     <ListItem>
-                        <Text>Variação: </Text>
+                        <Text>Variação:{this.state.variacao} </Text>
                     </ListItem>
 
                     <ListItem>
-                        <Text>Variação(%): </Text>
+                        <Text>Variação(%): {this.state.variacao_porcentagem}</Text>
                     </ListItem>
 
                     <ListItem>
-                        <Text>Maximo: </Text>
+                        <Text>Maximo:{this.state.maximo} </Text>
                     </ListItem>
 
                     <ListItem last>
-                        <Text>Minimo</Text>
+                        <Text>Minimo: {this.state.minimo}</Text>
                     </ListItem>
 
                     <Button info>
