@@ -28,41 +28,58 @@ export default class tela_principal extends Component {
             variacao: "",
             variacao_porcentagem: "",
             maximo: "",
-            minimo: "",
-
+            minimo: ""
 
         };
     }
+
+
+    componentDidMount = async () => {
+
+        this.buscaMoeda(this.state.selected)
+
+
+    }
+
     onValueChange(value) {
+
         this.setState({
             selected: value,
-            nome: this.state.nome,
-            compra: this.state.compra,
-            venda: this.state.venda,
-            variacao: this.state.variacao,
-            variacao_porcentagem: this.state.variacao_porcentagem,
-            maximo: this.state.maximo,
-            minimo: this.state.minimo,
-
         });
+
+        this.buscaMoeda(value)
+
     }
+
+
+    /* buscaMoeda = async (valor) => {
+         await api.get(`/${valor}`)
+             .then(res => {
+                 this.state.nome = res.data["0"]["name"]
+                 this.state.compra = res.data["0"]["bid"]
+                 this.state.venda = res.data["0"]["ask"]
+                 this.state.variacao = res.data["0"]["varBid"]
+                 this.state.variacao_porcentagem = res.data["0"]["pctChange"]
+                 this.state.maximo = res.data["0"]["high"]
+                 this.state.minimo = res.data["0"]["low"]
+             })
+     }*/
 
     buscaMoeda = async (valor) => {
         await api.get(`/${valor}`)
-            .then(res => {                               
-                this.state.nome = res.data["0"]["name"]
-                this.state.compra = res.data["0"]["bid"]
-                this.state.venda = res.data["0"]["ask"]
-                this.state.variacao =res.data["0"]["varBid"]
-                this.state.variacao_porcentagem =res.data["0"]["pctChange"]
-                this.state.maximo =res.data["0"]["high"]
-                this.state.minimo =res.data["0"]["low"]
-                
+            .then(res => {
+                this.setState({
+                    nome: res.data["0"]["name"],
+                    compra: res.data["0"]["bid"],
+                    venda: res.data["0"]["ask"],
+                    variacao: res.data["0"]["varBid"],
+                    variacao_porcentagem: res.data["0"]["pctChange"],
+                    maximo: res.data["0"]["high"],
+                    minimo: res.data["0"]["low"]
+                })
 
             })
-
-    };
-
+    }
 
     render() {
 
@@ -88,7 +105,7 @@ export default class tela_principal extends Component {
                     >
                         <Picker.Item label="SELECIONE UMA MOEDA" value="SELECIONE UMA MOEDA" />
                         <Picker.Item label="USD - DOLAR COMERCIAL" value="USD-BRL" />
-                        <Picker.Item label="USDT - DOLAR TURISMO" value="USDT-BRL" />
+                        <Picker.Item label="USDT - DOLAR TURISTICO" value="USDT-BRL" />
                         <Picker.Item label="CAD - DOLAR CANADENSE" value="CAD-BRL" />
                         <Picker.Item label="AUD - DOLAR AUTRALIANO" value="AUD-BRL" />
                         <Picker.Item label="GBP - LIBRA ESTERLINA" value="GBP-BRL" />
@@ -96,7 +113,6 @@ export default class tela_principal extends Component {
                         <Picker.Item label="JPY - IENE JAPONES" value="JPY-BRL" />
                         <Picker.Item label="CHF - FRENCO SUIÇO" value="CHF-BRL" />
                         <Picker.Item label="CNY - YUAN CHINES" value="CNY-BRL" />
-                        <Picker.Item label="YLS - NOVO SHEKEL ISRAELENSE" value="YLS-BRL" />
                         <Picker.Item label="BTC - BITCOIN" value="BTC-BRL" />
                         <Picker.Item label="LTC - LITECOIN" value="LTC-BRL" />
                         <Picker.Item label="ETH - ETHEREUM" value="ETH-BRL" />
@@ -104,20 +120,19 @@ export default class tela_principal extends Component {
                     </Picker>
 
                     <Separator bordered>
-                        {/*   <Text>Moeda: {this.state.selected}</Text>*/}
                         <Text>Moeda: {this.state.nome}</Text>
 
                     </Separator>
                     <ListItem>
-                        <Text>Compra:{this.state.compra} </Text>
+                        <Text>Compra: {this.state.compra} </Text>
                     </ListItem>
 
                     <ListItem>
-                        <Text>Venda:{this.state.venda} </Text>
+                        <Text>Venda: {this.state.venda} </Text>
                     </ListItem>
 
                     <ListItem>
-                        <Text>Variação:{this.state.variacao} </Text>
+                        <Text>Variação: {this.state.variacao} </Text>
                     </ListItem>
 
                     <ListItem>
@@ -125,7 +140,7 @@ export default class tela_principal extends Component {
                     </ListItem>
 
                     <ListItem>
-                        <Text>Maximo:{this.state.maximo} </Text>
+                        <Text>Maximo: {this.state.maximo} </Text>
                     </ListItem>
 
                     <ListItem last>
