@@ -16,9 +16,13 @@ import {
 
 import { StyleSheet } from 'react-native';
 
+
+
 console.disableYellowBox = true
 
+
 export default class tela_principal extends Component {
+
 
     constructor(props) {
         super(props);
@@ -172,11 +176,19 @@ export default class tela_principal extends Component {
                         </CardItem>
                     </Card>
 
-                    <Button info style={styles.button}>
+                    <Button
+                        info
+                        style={styles.button}
+                        onPress={() => this.props.navigation.navigate('porPeriodo')}
+                    >
                         <Text style={styles.text}> Por Periodo </Text>
                     </Button>
 
-                    <Button info style={styles.espaceButton}>
+                    <Button
+                        info
+                        style={styles.espaceButton}
+                        onPress={() => this.props.navigation.navigate('listaTodas')}
+                    >
                         <Text style={styles.text2}> Listar Todas </Text>
                     </Button>
 

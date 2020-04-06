@@ -11,7 +11,8 @@ import {
     DatePicker,
     Card,
     CardItem,
-    Body
+    Body,
+    Button
 } from "native-base";
 
 import { StyleSheet } from 'react-native';
@@ -191,7 +192,17 @@ export default class tela_periodo extends Component {
                         </CardItem>
                     </Card>
 
+                    
+
                 </Content>
+
+                <Button
+                        info
+                        style={styles.button}
+                        onPress={() => this.props.navigation.navigate('porPeriodo')}
+                    >
+                        <Text style={styles.text}> Por Periodo </Text>
+                    </Button>
 
             </Container>
 
