@@ -46,7 +46,6 @@ export default class lista_todas extends Component {
             })
     }
 
-
     render() {
         return (
             <Container style={styles.container}>
