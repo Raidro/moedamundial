@@ -8,13 +8,15 @@ import {
     Picker,
     Content,
     H1,
-    Separator,
-    ListItem,
-    Button
+    Button,
+    Card,
+    CardItem,
+    Body
 } from "native-base";
+
 import { StyleSheet } from 'react-native';
 
-
+console.disableYellowBox = true
 
 export default class tela_principal extends Component {
 
@@ -119,35 +121,58 @@ export default class tela_principal extends Component {
                         <Picker.Item label="XRP - RIPPLE" value="XRP-BRL" />
                     </Picker>
 
-                    <Separator bordered>
-                        <Text>Moeda: {this.state.nome}</Text>
+                    <Card>
+                        <CardItem header bordered>
+                            <Text>{this.state.nome}</Text>
+                        </CardItem>
+                        <CardItem bordered>
+                            <Body>
+                                <Text>
+                                    Compra: {this.state.compra}
+                                </Text>
+                            </Body>
+                        </CardItem>
+                        <CardItem bordered>
+                            <Body>
+                                <Text>
+                                    Venda: {this.state.venda}
+                                </Text>
+                            </Body>
+                        </CardItem>
+                        <CardItem bordered>
+                            <Body>
+                                <Text>
+                                    Variação: {this.state.variacao}
+                                </Text>
+                            </Body>
+                        </CardItem>
 
-                    </Separator>
-                    <ListItem>
-                        <Text>Compra: {this.state.compra} </Text>
-                    </ListItem>
+                        <CardItem bordered>
+                            <Body>
+                                <Text>
+                                    Variação(%): {this.state.variacao_porcentagem}
+                                </Text>
+                            </Body>
+                        </CardItem>
 
-                    <ListItem>
-                        <Text>Venda: {this.state.venda} </Text>
-                    </ListItem>
+                        <CardItem bordered>
+                            <Body>
+                                <Text>
+                                    Maximo: {this.state.maximo}
+                                </Text>
+                            </Body>
+                        </CardItem>
 
-                    <ListItem>
-                        <Text>Variação: {this.state.variacao} </Text>
-                    </ListItem>
+                        <CardItem bordered>
+                            <Body>
+                                <Text>
+                                    Minimo: {this.state.minimo}
+                                </Text>
+                            </Body>
+                        </CardItem>
+                    </Card>
 
-                    <ListItem>
-                        <Text>Variação(%): {this.state.variacao_porcentagem}</Text>
-                    </ListItem>
-
-                    <ListItem>
-                        <Text>Maximo: {this.state.maximo} </Text>
-                    </ListItem>
-
-                    <ListItem last>
-                        <Text>Minimo: {this.state.minimo}</Text>
-                    </ListItem>
-
-                    <Button info>
+                    <Button info style={styles.button}>
                         <Text style={styles.text}> Por Periodo </Text>
                     </Button>
 
@@ -197,6 +222,9 @@ const styles = StyleSheet.create({
     },
     espaceButton: {
         marginTop: 15
+    },
+    button: {
+        marginTop: 10
     }
 });
 

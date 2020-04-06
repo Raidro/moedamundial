@@ -6,12 +6,12 @@ import porPeriodo from '../screens/tela_periodo/index.js'
 
 export default createAppContainer(createSwitchNavigator(
   {
-    
-    telaPrincipal: {screen: telaPrincipal},
-    listaTodas: {screen: listaTodas},
-    porPeriodo: {screen: porPeriodo},    
+
+    telaPrincipal: { screen: telaPrincipal },
+    listaTodas: { screen: listaTodas },
+    porPeriodo: { screen: porPeriodo },
   },
   {
-    initialRouteName: 'porPeriodo',
+    initialRouteName: 'telaPrincipal',
   }
 ));
